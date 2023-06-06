@@ -2,9 +2,7 @@ package com.niles.evento;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_activity")
@@ -20,6 +18,8 @@ public class Activity {
     private Category category;
     @OneToMany(mappedBy = "activity")
     private List<Block> blocks = new ArrayList<>();
+    @ManyToMany(mappedBy = "activities")
+    private Set<Participant> participants = new HashSet<>();
 
     public Activity() {
     }
@@ -31,6 +31,7 @@ public class Activity {
         this.price = price;
         this.category = category;
     }
+
 
     public Long getId() {
         return id;
@@ -74,6 +75,10 @@ public class Activity {
 
     public List<Block> getBlocks() {
         return blocks;
+    }
+
+    public Set<Participant> getParticipants() {
+        return participants;
     }
 
     @Override
