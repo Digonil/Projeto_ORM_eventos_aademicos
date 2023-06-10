@@ -1,20 +1,22 @@
-package com.niles.evento;
+package com.niles.evento.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "tb_activity")
-public class Activity {
+public class Activity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private Double price;
     @ManyToOne
-    @JoinColumn(name = "activity_id")
+    @JoinColumn(name = "category_id")
     private Category category;
     @OneToMany(mappedBy = "activity")
     private List<Block> blocks = new ArrayList<>();
@@ -103,6 +105,7 @@ public class Activity {
                 ", price=" + price +
                 ", category=" + category +
                 ", blocks=" + blocks +
+                ", participants=" + participants +
                 '}';
     }
 }
