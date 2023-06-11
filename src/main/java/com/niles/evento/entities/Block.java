@@ -17,7 +17,7 @@ public class Block  implements Serializable {
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant start;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant end;
+    private Instant finish;
     @ManyToOne
     @JoinColumn(name = "activity_id")
     private Activity activity;
@@ -28,7 +28,7 @@ public class Block  implements Serializable {
     public Block(Long id, Instant start, Instant end, Activity activity) {
         this.id = id;
         this.start = start;
-        this.end = end;
+        this.finish = end;
         this.activity = activity;
     }
 
@@ -48,12 +48,12 @@ public class Block  implements Serializable {
         this.start = start;
     }
 
-    public Instant getEnd() {
-        return end;
+    public Instant getFinish() {
+        return finish;
     }
 
-    public void setEnd(Instant end) {
-        this.end = end;
+    public void setFinish(Instant finish) {
+        this.finish = finish;
     }
 
     public Activity getActivity() {
@@ -82,7 +82,7 @@ public class Block  implements Serializable {
         return "Block{" +
                 "id=" + id +
                 ", start=" + start +
-                ", end=" + end +
+                ", finish=" + finish +
                 ", activity=" + activity +
                 '}';
     }
